@@ -15,17 +15,43 @@ class TestEnterpriseManager(TestCase):
         date = "01/01/2025"
         budget = 50000.00
         output = enterprise_manager.register_project(company_cif, project_acronym, project_description, department, date, budget)
-        expected_output = ""
-        self.assertEqual(output, expected_output)
+        self.assertEqual("e59f691d9ac4975dde6e5acfca0f98e8", output)
 
     def test_TC2(self):
-        self.fail()
+        enterprise_manager = EnterpriseManager()
+        company_cif = "A58818501"
+        project_acronym = "PROJ12"
+        project_description = "competition"
+        department = "FINANCE"
+        date = "02/02/2026"
+        budget = 50000.01
+        output = enterprise_manager.register_project(company_cif, project_acronym, project_description, department,
+                                                     date, budget)
+        self.assertEqual("06bfa76853c4414f4607e8ed6107db6e", output)
 
     def test_TC3(self):
-        self.fail()
+        enterprise_manager = EnterpriseManager()
+        company_cif = "A58818501"
+        project_acronym = "PROJECT12"
+        project_description = "competition development test"
+        department = "LEGAL"
+        date = "30/11/2027"
+        budget = 1000000
+        output = enterprise_manager.register_project(company_cif, project_acronym, project_description, department,
+                                                     date, budget)
+        self.assertEqual("96749da7fd992e68b7c87fa8831a7001", output)
 
     def test_TC4(self):
-        self.fail()
+        enterprise_manager = EnterpriseManager()
+        company_cif = "A58818501"
+        project_acronym = "PROJECT123"
+        project_description = "competitions development tests"
+        department = "LOGISTICS"
+        date = "31/12/2025"
+        budget = 999999.99 # Have a look if this value is correct -TA
+        output = enterprise_manager.register_project(company_cif, project_acronym, project_description, department,
+                                                     date, budget)
+        self.assertEqual("b21123066aa51951c4887d33c68faf0d", output)
 
     def test_TC5(self):
         self.fail()

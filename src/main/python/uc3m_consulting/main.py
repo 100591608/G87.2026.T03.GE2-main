@@ -3,8 +3,19 @@
 from uc3m_consulting import enterprise_project
 
 def showMD5():
-    obj= enterprise_project.EnterpriseProject('B86666660','PROJ01','Car sharing beta release','HR','01/01/2026',75000)
+    company_cif = "A58818501"
+    project_acronym = "PROJECT12"
+    project_description = "competition development test"
+    department = "LEGAL"
+    date = "30/11/2027"
+    budget = 1000000
+
+    obj= enterprise_project.EnterpriseProject(company_cif,project_acronym,project_description,department, date,budget)
     print(obj.project_id)
+
+    # Change input values for every test case here, paste output into result on spreadsheet
+
+
 
 if __name__ == '__main__':
     showMD5()
