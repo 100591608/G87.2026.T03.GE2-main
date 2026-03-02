@@ -1,5 +1,6 @@
 astroid==4.0.4
 dill==0.4.1
+freezegun==1.5.5
 isort==7.0.0
 mccabe==0.7.0
 platformdirs==4.9.2
