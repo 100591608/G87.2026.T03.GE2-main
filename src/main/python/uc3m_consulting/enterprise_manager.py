@@ -1,5 +1,6 @@
 """Module """
 from .enterprise_project import EnterpriseProject
+from .enterprise_management_exception import EnterpriseManagementException
 
 class EnterpriseManager:
     """Class for providing the methods for managing the orders"""
@@ -11,6 +12,10 @@ class EnterpriseManager:
         """Registers a new enterprise project"""
         obj = EnterpriseProject(company_cif, project_acronym, project_description,
                                 department, date, budget)
+
+        if not isinstance(company_cif, str):
+            raise EnterpriseManagementException("Invalid Company CIF")
+
         return obj.project_id
 
         # Class example
