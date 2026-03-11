@@ -9,7 +9,10 @@ class EnterpriseManager:
     def register_project(self, company_cif: str, project_acronym: str,
                          project_description: str, department: str, date: str, budget: float):
         """Registers a new enterprise project"""
-        pass
+        obj = EnterpriseProject(company_cif, project_acronym, project_description,
+                                department, date, budget)
+        return obj.project_id
+
         # Class example
         # try:
             # obj=EnterpriseProject(company_cif, project_acronym,
