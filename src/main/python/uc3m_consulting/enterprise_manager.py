@@ -34,6 +34,9 @@ class EnterpriseManager:
         if len(project_acronym) < 5:
             raise EnterpriseManagementException("Invalid Project Acronym - Too Short")
 
+        if len(project_acronym) > 10:
+            raise EnterpriseManagementException("Invalid Project Acronym - Too Long")
+
 
         return obj.project_id
 
