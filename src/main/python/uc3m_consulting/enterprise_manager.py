@@ -49,6 +49,9 @@ class EnterpriseManager:
         if len(project_description) > 30:
             raise EnterpriseManagementException("Invalid Project Description - Too Long")
 
+        if not isinstance(department, str):
+            raise EnterpriseManagementException("Invalid Department - Wrong Data Type")
+
 
         return obj.project_id
 
