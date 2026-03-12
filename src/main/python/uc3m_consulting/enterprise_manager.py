@@ -31,6 +31,9 @@ class EnterpriseManager:
         if not isinstance(project_acronym, str):
             raise EnterpriseManagementException("Invalid Project Acronym - Wrong Data Type")
 
+        if len(project_acronym) < 5:
+            raise EnterpriseManagementException("Invalid Project Acronym - Too Short")
+
 
         return obj.project_id
 

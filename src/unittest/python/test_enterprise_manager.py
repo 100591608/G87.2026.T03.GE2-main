@@ -169,7 +169,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Project Acronym")
+        self.assertEqual(cm.exception.message, "Invalid Project Acronym - Too Short")
 
     def test_TC12(self):
         """Invalid Test Case 12 - Project Acronym"""
@@ -183,7 +183,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Project Acronym")
+        self.assertEqual(cm.exception.message, "Invalid Project Acronym - Too Long")
 
     def test_TC13(self):
         """Invalid Test Case 13 - Project Acronym"""
@@ -197,7 +197,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Project Acronym")
+        self.assertEqual(cm.exception.message, "Invalid Project Acronym - Not Valid String")
 
     def test_TC14(self):
         """Invalid Test Case 14 - Project Description"""
