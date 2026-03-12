@@ -85,7 +85,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Company CIF - Data Type")
+        self.assertEqual(cm.exception.message, "Invalid Company CIF - Wrong Data Type")
 
     def test_TC6(self):
         """Invalid Test Case 6 - Company CIF"""
@@ -155,7 +155,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Project Acronym")
+        self.assertEqual(cm.exception.message, "Invalid Project Acronym - Wrong Data Type")
 
     def test_TC11(self):
         """Invalid Test Case 11 - Project Acronym"""

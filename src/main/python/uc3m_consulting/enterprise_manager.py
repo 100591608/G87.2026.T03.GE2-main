@@ -14,7 +14,7 @@ class EnterpriseManager:
                                 department, date, budget)
 
         if not isinstance(company_cif, str):
-            raise EnterpriseManagementException("Invalid Company CIF - Data Type")
+            raise EnterpriseManagementException("Invalid Company CIF - Wrong Data Type")
 
         if len(company_cif) > 9:
             raise EnterpriseManagementException("Invalid Company CIF - Too Long")
@@ -27,6 +27,9 @@ class EnterpriseManager:
 
         if not EnterpriseManager.validate_cif(company_cif):
             raise EnterpriseManagementException("Invalid Company CIF")
+
+        if not isinstance(project_acronym, str):
+            raise EnterpriseManagementException("Invalid Project Acronym - Wrong Data Type")
 
 
         return obj.project_id
