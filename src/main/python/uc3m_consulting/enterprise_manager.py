@@ -19,6 +19,9 @@ class EnterpriseManager:
         if len(company_cif) > 9:
             raise EnterpriseManagementException("Invalid Company CIF - Too Long")
 
+        if len(company_cif) < 9:
+            raise EnterpriseManagementException("Invalid Company CIF - Too Short")
+
         if not EnterpriseManager.validate_cif(company_cif):
             raise EnterpriseManagementException("Invalid Company CIF")
 
