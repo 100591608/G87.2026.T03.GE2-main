@@ -37,6 +37,9 @@ class EnterpriseManager:
         if len(project_acronym) > 10:
             raise EnterpriseManagementException("Invalid Project Acronym - Too Long")
 
+        if not project_acronym.isalnum() or not project_acronym.isupper():
+            raise EnterpriseManagementException("Invalid Project Acronym - Not Valid String")
+
 
         return obj.project_id
 
