@@ -40,6 +40,9 @@ class EnterpriseManager:
         if not project_acronym.isalnum() or not project_acronym.isupper():
             raise EnterpriseManagementException("Invalid Project Acronym - Not Valid String")
 
+        if not isinstance(project_description, str):
+            raise EnterpriseManagementException("Invalid Project Description - Wrong Data Type")
+
 
         return obj.project_id
 

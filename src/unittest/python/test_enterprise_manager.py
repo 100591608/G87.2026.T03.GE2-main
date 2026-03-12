@@ -211,7 +211,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Project Description")
+        self.assertEqual(cm.exception.message, "Invalid Project Description - Wrong Data Type")
 
     def test_TC15(self):
         """Invalid Test Case 15 - Project Description"""
@@ -225,7 +225,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Project Description")
+        self.assertEqual(cm.exception.message, "Invalid Project Description - Too Short")
 
     def test_TC16(self):
         """Invalid Test Case 16 - Project Description"""
@@ -239,7 +239,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Project Description")
+        self.assertEqual(cm.exception.message, "Invalid Project Description - Too Long")
 
     def test_TC17(self):
         """Invalid Test Case 17 - Department"""
