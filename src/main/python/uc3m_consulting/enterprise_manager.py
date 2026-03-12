@@ -52,6 +52,8 @@ class EnterpriseManager:
         if not isinstance(department, str):
             raise EnterpriseManagementException("Invalid Department - Wrong Data Type")
 
+        if department not in {"HR", "LEGAL", "LOGISTICS", "FINANCE"} :
+            raise EnterpriseManagementException("Invalid Department - Invalid Value")
 
         return obj.project_id
 
