@@ -16,8 +16,12 @@ class EnterpriseManager:
         if not isinstance(company_cif, str):
             raise EnterpriseManagementException("Invalid Company CIF - Data Type")
 
+        if len(company_cif) > 9:
+            raise EnterpriseManagementException("Invalid Company CIF - Too Long")
+
         if not EnterpriseManager.validate_cif(company_cif):
             raise EnterpriseManagementException("Invalid Company CIF")
+
 
         return obj.project_id
 
