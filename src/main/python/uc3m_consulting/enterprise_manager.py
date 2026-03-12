@@ -14,6 +14,9 @@ class EnterpriseManager:
                                 department, date, budget)
 
         if not isinstance(company_cif, str):
+            raise EnterpriseManagementException("Invalid Company CIF - Data Type")
+
+        if not EnterpriseManager.validate_cif(company_cif):
             raise EnterpriseManagementException("Invalid Company CIF")
 
         return obj.project_id
@@ -31,7 +34,35 @@ class EnterpriseManager:
         # return obj.project_id
 
     @staticmethod
-    def validate_cif(cif: str):
-        """RETURNs TRUE IF THE IBAN RECEIVED IS VALID SPANISH IBAN,
-        OR FALSE IN OTHER CASE"""
-        return True
+    def validate_cif(cif):
+        """Validate a CIF identifier. Return True if valid, False otherwise."""
+
+        cif = str(cif).strip().upper()
+        if len(cif) != 9:
+            return False
+
+        letter = cif[0]
+        number_block = cif[1:8]
+        control_char = cif[8]
+
+        if not letter.isalpha() or not number_block.isdigit() or not control_char.isalnum():
+            return False
+
+        even_sum = sum(int(number_block[i]) for i in (1, 3, 5))
+
+        odd_sum = 0
+        for i in (0, 2, 4, 6):
+            v = int(number_block[i]) * 2
+            odd_sum += (v // 10) + (v % 10)
+
+        total = even_sum + odd_sum
+        base_digit = (10 - (total % 10)) % 10
+
+        control_digit = str(base_digit)
+        control_letter = "JABCDEFGHI"[base_digit]
+
+        if letter in "ABEH":
+            return control_char == control_digit
+        if letter in "KPQS":
+            return control_char == control_letter
+        return control_char in (control_digit, control_letter)

@@ -85,7 +85,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Company CIF")
+        self.assertEqual(cm.exception.message, "Invalid Company CIF - Data Type")
 
     def test_TC6(self):
         """Invalid Test Case 6 - Company CIF"""
@@ -113,7 +113,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Company CIF")
+        self.assertEqual(cm.exception.message, "Invalid Company CIF - Too Long")
 
     def test_TC8(self):
         """Invalid Test Case 8 - Company CIF"""
@@ -127,7 +127,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Company CIF")
+        self.assertEqual(cm.exception.message, "Invalid Company CIF - Too Short")
 
     def test_TC9(self):
         """Invalid Test Case 9 - Company CIF"""
@@ -141,7 +141,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Company CIF")
+        self.assertEqual(cm.exception.message, "Invalid Company CIF - Wrong Format")
 
     def test_TC10(self):
         """Invalid Test Case 10 - Project Acronym"""
