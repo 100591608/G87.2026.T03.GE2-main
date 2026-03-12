@@ -1,4 +1,5 @@
 """Module """
+import datetime
 from .enterprise_project import EnterpriseProject
 from .enterprise_management_exception import EnterpriseManagementException
 
@@ -57,6 +58,11 @@ class EnterpriseManager:
 
         if not isinstance(date, str):
             raise EnterpriseManagementException("Invalid Date - Wrong Data Type")
+
+        try:
+            date = datetime.datetime.strptime(date, "%d/%m/%Y")
+        except ValueError as e:
+            raise EnterpriseManagementException("Invalid Date - Wrong Date Format") from e
 
         return obj.project_id
 
