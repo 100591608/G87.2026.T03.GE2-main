@@ -22,6 +22,9 @@ class EnterpriseManager:
         if len(company_cif) < 9:
             raise EnterpriseManagementException("Invalid Company CIF - Too Short")
 
+        if not company_cif[0].isalpha() or not company_cif[1:8].isdigit() or not company_cif[8].isalnum():
+            raise EnterpriseManagementException("Invalid Company CIF - Wrong Format")
+
         if not EnterpriseManager.validate_cif(company_cif):
             raise EnterpriseManagementException("Invalid Company CIF")
 
