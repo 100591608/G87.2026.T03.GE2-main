@@ -253,7 +253,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Department")
+        self.assertEqual(cm.exception.message, "Invalid Department - Wrong Data Type")
 
     def test_TC18(self):
         """Invalid Test Case 18 - Department"""
@@ -267,7 +267,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Department")
+        self.assertEqual(cm.exception.message, "Invalid Department - Invalid Value")
 
     def test_TC19(self):
         """Invalid Test Case 19 - Date"""
@@ -281,7 +281,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Date")
+        self.assertEqual(cm.exception.message, "Invalid Date - Wrong Data Type")
 
     def test_TC20(self):
         """Invalid Test Case 20 - Date"""
@@ -295,7 +295,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Date")
+        self.assertEqual(cm.exception.message, "Invalid Date - Wrong Date Format")
 
     def test_TC21(self):
         """Invalid Test Case 21 - Date"""
@@ -309,7 +309,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Date")
+        self.assertEqual(cm.exception.message, "Invalid Date - Invalid Day")
 
     def test_TC22(self):
         """Invalid Test Case 22 - Date"""
@@ -323,7 +323,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Date")
+        self.assertEqual(cm.exception.message, "Invalid Date - Invalid Day")
 
     def test_TC23(self):
         """Invalid Test Case 23 - Date"""
@@ -337,7 +337,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Date")
+        self.assertEqual(cm.exception.message, "Invalid Date - Invalid Month")
 
     def test_TC24(self):
         """Invalid Test Case 24 - Date"""
@@ -351,7 +351,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Date")
+        self.assertEqual(cm.exception.message, "Invalid Date - Invalid Month")
 
     def test_TC25(self):
         """Invalid Test Case 25 - Date"""
@@ -365,7 +365,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Date")
+        self.assertEqual(cm.exception.message, "Invalid Date - Invalid Year")
 
     def test_TC26(self):
         """Invalid Test Case 26 - Date"""
@@ -379,7 +379,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Date")
+        self.assertEqual(cm.exception.message, "Invalid Date - Invalid Year")
 
     def test_TC27(self):
         """Invalid Test Case 27 - Date"""
@@ -393,7 +393,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Date")
+        self.assertEqual(cm.exception.message, "Invalid Date - Date Before Register Date")
 
     def test_TC28(self):
         """Invalid Test Case 28 - Budget"""
@@ -407,7 +407,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Budget")
+        self.assertEqual(cm.exception.message, "Invalid Budget - Wrong Data Type")
 
     def test_TC29(self):
         """Invalid Test Case 29 - Budget"""
@@ -421,7 +421,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Budget")
+        self.assertEqual(cm.exception.message, "Invalid Budget - Too Little Decimals")
 
     def test_TC30(self):
         """Invalid Test Case 30 - Budget"""
@@ -435,7 +435,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Budget")
+        self.assertEqual(cm.exception.message, "Invalid Budget - Too Many Decimals")
 
     def test_TC31(self):
         """Invalid Test Case 31 - Budget"""
@@ -449,7 +449,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Budget")
+        self.assertEqual(cm.exception.message, "Invalid Budget - Too Low Value")
 
     def test_TC32(self):
         """Invalid Test Case 32 - Budget"""
@@ -463,7 +463,7 @@ class TestEnterpriseManager(unittest.TestCase):
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
-        self.assertEqual(cm.exception.message, "Invalid Budget")
+        self.assertEqual(cm.exception.message, "Invalid Budget - Too High Value")
 
     def test_TC33(self):
         """Invalid Test Case 33 - Output"""
