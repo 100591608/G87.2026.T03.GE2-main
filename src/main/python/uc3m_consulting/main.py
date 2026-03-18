@@ -2,7 +2,8 @@
 
 from uc3m_consulting import enterprise_project
 
-def showMD5():
+def show_md5():
+    """Shows MD5 Hash of an order"""
     company_cif = "A58818501"
     project_acronym = "PROJECT12"
     project_description = "competition development tests"
@@ -16,4 +17,4 @@ def showMD5():
     # Change input values for every test case here, paste output into result on spreadsheet
 
 if __name__ == '__main__':
-    showMD5()
+    show_md5()

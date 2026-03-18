@@ -1,7 +1,7 @@
 """Module """
 import datetime
-from .enterprise_project import EnterpriseProject
-from .enterprise_management_exception import EnterpriseManagementException
+from uc3m_consulting.enterprise_project import EnterpriseProject
+from uc3m_consulting.enterprise_management_exception import EnterpriseManagementException
 
 class EnterpriseManager:
     """Class for providing the methods for managing the orders"""
