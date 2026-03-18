@@ -78,6 +78,9 @@ class EnterpriseManager:
         if budget < 50000.00:
             raise EnterpriseManagementException("Invalid Budget - Too Low Value")
 
+        if budget > 1000000.00:
+            raise EnterpriseManagementException("Invalid Budget - Too High Value")
+
         return obj.project_id
 
         # Class example
