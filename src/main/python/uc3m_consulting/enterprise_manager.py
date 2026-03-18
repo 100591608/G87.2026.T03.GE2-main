@@ -75,6 +75,9 @@ class EnterpriseManager:
         if not isinstance(budget, float):
             raise EnterpriseManagementException("Invalid Budget - Wrong Data Type")
 
+        if budget < 50000.00:
+            raise EnterpriseManagementException("Invalid Budget - Too Low Value")
+
         return obj.project_id
 
         # Class example
