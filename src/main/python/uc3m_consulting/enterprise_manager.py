@@ -84,6 +84,12 @@ class EnterpriseManager:
         if round(budget, 2) != budget:
             raise EnterpriseManagementException("Invalid Budget - Too Many Decimals")
 
+        budget_str = str(budget)
+        if '.' in budget_str:
+            decimals = len(budget_str.split('.')[1])
+            if decimals < 2 and not budget_str.endswith('.0'):
+                raise EnterpriseManagementException("Invalid Budget - Too Little Decimals")
+
         return obj.project_id
 
         # Class example
