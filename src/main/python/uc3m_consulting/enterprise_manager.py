@@ -81,6 +81,9 @@ class EnterpriseManager:
         if budget > 1000000.00:
             raise EnterpriseManagementException("Invalid Budget - Too High Value")
 
+        if round(budget, 2) != budget:
+            raise EnterpriseManagementException("Invalid Budget - Too Many Decimals")
+
         return obj.project_id
 
         # Class example

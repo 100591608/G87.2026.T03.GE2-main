@@ -417,7 +417,7 @@ class TestEnterpriseManager(unittest.TestCase):
         project_description = "strawberry"
         department = "HR"
         date = "01/01/2025"
-        budget = 50000.0
+        budget = 50000.1
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
@@ -431,7 +431,7 @@ class TestEnterpriseManager(unittest.TestCase):
         project_description = "strawberry"
         department = "HR"
         date = "01/01/2025"
-        budget = 50000.000
+        budget = 50000.123
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
