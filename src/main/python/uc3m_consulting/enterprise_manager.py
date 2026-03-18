@@ -60,7 +60,7 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Invalid Date - Wrong Data Type")
 
         try:
-            parsed_date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
+            date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
         except ValueError as e:
             raise EnterpriseManagementException("Invalid Date") from e
 
