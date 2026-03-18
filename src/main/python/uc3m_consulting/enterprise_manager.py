@@ -70,6 +70,11 @@ class EnterpriseManager:
         if date.year > 2027:
             raise EnterpriseManagementException("Invalid Date - Year After 2027")
 
+        # Ask about TC27
+
+        if not isinstance(budget, float):
+            raise EnterpriseManagementException("Invalid Budget - Wrong Data Type")
+
         return obj.project_id
 
         # Class example
