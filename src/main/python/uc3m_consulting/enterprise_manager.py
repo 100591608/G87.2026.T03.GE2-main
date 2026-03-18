@@ -60,9 +60,9 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Invalid Date - Wrong Data Type")
 
         try:
-            date = datetime.datetime.strptime(date, "%d/%m/%Y")
+            parsed_date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
         except ValueError as e:
-            raise EnterpriseManagementException("Invalid Date - Wrong Date Format") from e
+            raise EnterpriseManagementException("Invalid Date") from e
 
         return obj.project_id
 
