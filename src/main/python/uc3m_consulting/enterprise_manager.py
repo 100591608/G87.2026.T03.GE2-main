@@ -66,6 +66,10 @@ class EnterpriseManager:
 
         if date.year < 2025:
             raise EnterpriseManagementException("Invalid Date - Year Before 2025")
+
+        if date.year > 2027:
+            raise EnterpriseManagementException("Invalid Date - Year After 2027")
+
         return obj.project_id
 
         # Class example
