@@ -2,6 +2,7 @@
 import datetime
 from uc3m_consulting.enterprise_project import EnterpriseProject
 from uc3m_consulting.enterprise_management_exception import EnterpriseManagementException
+import json
 
 class EnterpriseManager:
     """Class for providing the methods for managing the orders"""
@@ -60,17 +61,21 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Invalid Date - Wrong Data Type")
 
         try:
-            date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
+            # Specify the format matching the string
+            format_code = "%d/%m/%Y"
+            new_date = datetime.datetime.strptime(date, format_code)
+
+            if new_date < datetime.datetime.now():
+                raise EnterpriseManagementException("Invalid Date - Date Before Register Date")
         except ValueError as e:
             raise EnterpriseManagementException("Invalid Date") from e
 
+        date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
         if date.year < 2025:
             raise EnterpriseManagementException("Invalid Date - Year Before 2025")
 
         if date.year > 2027:
             raise EnterpriseManagementException("Invalid Date - Year After 2027")
-
-        # Ask about TC27
 
         if not isinstance(budget, float):
             raise EnterpriseManagementException("Invalid Budget - Wrong Data Type")
@@ -90,19 +95,23 @@ class EnterpriseManager:
             if decimals < 2 and not budget_str.endswith('.0'):
                 raise EnterpriseManagementException("Invalid Budget - Too Little Decimals")
 
-        return obj.project_id
+        try:
+            data_list = []
+            with open("my_file.json", "r", encoding="utf-8") as file:
+                data_list = json.load(file)
+            if data_list["company_cif"] == company_cif:
+                raise Exception("")
+        except:
+            raise EnterpriseManagementException("Duplicate Company Cif")
 
-        # Class example
-        # try:
-            # obj=EnterpriseProject(company_cif, project_acronym,
-                                  # project_description, department, date, budget)
-        #     data_list=obj.to_json()
-        #     #save data into a file
-        #     with open("my_file.json", "w", encoding="utf-8") as file:
-        #         json.dump(data_list, file, indent=2)
-        # exception (e):
-        #     raise managementException("Wrong CIF Value")
-        # return obj.project_id
+        try:
+            data_list = obj.to_json()
+            #save data into a file
+            with open("my_file.json", "w", encoding="utf-8") as file:
+                json.dump(data_list, file, indent=2)
+        except (e):
+            raise EnterpriseManagementException("Wrong CIF Value")
+        return obj.project_id
 
     @staticmethod
     def validate_cif(cif):
