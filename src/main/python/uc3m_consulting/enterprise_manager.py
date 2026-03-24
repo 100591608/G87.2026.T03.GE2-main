@@ -96,6 +96,15 @@ class EnterpriseManager:
         if year > 2027:
             raise EnterpriseManagementException("Invalid Date - Invalid Year")
 
+        try:
+            input_date = datetime.date(year, month, day)
+        except ValueError as exc:
+            raise EnterpriseManagementException("Invalid Date") from exc
+
+        register_date = datetime.datetime.now().date()
+        if input_date < register_date:
+            raise EnterpriseManagementException("Invalid Date - Date Before Register Date")
+
         # Budget
         if not isinstance(budget, float):
             raise EnterpriseManagementException("Invalid Budget - Wrong Data Type")

@@ -1,10 +1,12 @@
 """Testing file for EnterpriseManager"""
 import os
 import unittest
+from freezegun import freeze_time
 from uc3m_consulting import EnterpriseManager
 from uc3m_consulting import EnterpriseManagementException
 
 
+@freeze_time("01/01/2025")
 class TestEnterpriseManager(unittest.TestCase):
     """Class for testing the EnterpriseManager class"""
 
@@ -39,6 +41,7 @@ class TestEnterpriseManager(unittest.TestCase):
                                                      project_description, department, date, budget)
         self.assertEqual("e59f691d9ac4975dde6e5acfca0f98e8", output)
 
+    @freeze_time("02/02/2026")
     def test_TC2(self):
         """Valid Test Case 2"""
         enterprise_manager = EnterpriseManager()
@@ -52,6 +55,7 @@ class TestEnterpriseManager(unittest.TestCase):
                                                      project_description, department, date, budget)
         self.assertEqual("06bfa76853c4414f4607e8ed6107db6e", output)
 
+    @freeze_time("30/11/2027")
     def test_TC3(self):
         """Valid Test Case 3"""
         enterprise_manager = EnterpriseManager()
@@ -65,6 +69,7 @@ class TestEnterpriseManager(unittest.TestCase):
                                                      project_description, department, date, budget)
         self.assertEqual("6241127df42cb7486858e3c8b46b58c2", output)
 
+    @freeze_time("31/12/2025")
     def test_TC4(self):
         """Valid Test Case 4"""
         enterprise_manager = EnterpriseManager()
@@ -386,6 +391,7 @@ class TestEnterpriseManager(unittest.TestCase):
                                                 project_description, department, date, budget)
         self.assertEqual(cm.exception.message, "Invalid Date - Invalid Year")
 
+    @freeze_time("02/02/2025")
     def test_TC27(self):
         """Invalid Test Case 27 - Date"""
         enterprise_manager = EnterpriseManager()
