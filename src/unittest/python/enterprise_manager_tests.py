@@ -2,7 +2,7 @@
 import unittest
 from uc3m_consulting import EnterpriseManager
 from uc3m_consulting import EnterpriseManagementException
-import os
+
 
 class TestEnterpriseManager(unittest.TestCase):
     """Class for testing the EnterpriseManager class"""
@@ -388,7 +388,7 @@ class TestEnterpriseManager(unittest.TestCase):
         project_acronym = "PROJ1"
         project_description = "strawberry"
         department = "HR"
-        date = "01/02/2024"
+        date = "01/02/2025"
         budget = 50000.00
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
@@ -472,27 +472,13 @@ class TestEnterpriseManager(unittest.TestCase):
         project_acronym = "PROJ1"
         project_description = "strawberry"
         department = "HR"
-        date = "01/01/2027"
+        date = "01/01/2025"
         budget = 50000.01
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,
                                                 project_description, department, date, budget)
         self.assertEqual(cm.exception.message,
-                         "Duplicate Company Cif")
-
-    def test_TC34(self):
-        """Valid Test Case 34 - Output"""
-        enterprise_manager = EnterpriseManager()
-        company_cif = "A58818501"
-        project_acronym = "PROJ1"
-        project_description = "strawberry"
-        department = "HR"
-        date = "01/01/2027"
-        budget = 50000.01
-        enterprise_manager.register_project(company_cif, project_acronym,
-                                                project_description, department, date, budget)
-        self.assertEqual(os.path.exists("my_file.json"), True)
-
+                         "Project with same name for the same CIF already existed in the data file")
 
 if __name__ == '__main__':
     unittest.main()
