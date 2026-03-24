@@ -1,4 +1,5 @@
 """Module """
+import os
 import json
 import datetime
 from uc3m_consulting.enterprise_project import EnterpriseProject
@@ -63,9 +64,6 @@ class EnterpriseManager:
         if not isinstance(date, str):
             raise EnterpriseManagementException("Invalid Date - Wrong Data Type")
 
-        if not isinstance(date, str):
-            raise EnterpriseManagementException("Invalid Date - Wrong Data Type")
-
         if len(date) != 10 or date[2] != "/" or date[5] != "/":
             raise EnterpriseManagementException("Invalid Date - Wrong Format")
 
@@ -117,7 +115,38 @@ class EnterpriseManager:
             if decimals < 2 and not budget_str.endswith('.0'):
                 raise EnterpriseManagementException("Invalid Budget - Too Little Decimals")
 
+        # Output
+        file_path = "corporate_operations.json"
+        data_list = []
+
+        if os.path.exists(file_path):
+            with open(file_path, "r", encoding="utf-8") as file:
+                try:
+                    data_list = json.load(file)
+                except json.JSONDecodeError:
+                    data_list = []
+
+        for item in data_list:
+            if item["company_cif"] == company_cif and item["project_description"] == project_description:
+                raise EnterpriseManagementException("Project with same name for the same CIF already existed in the data file")
+
         obj = EnterpriseProject(company_cif, project_acronym, project_description, department, date, budget)
+
+        project_data = {
+            "project_id": obj.project_id,
+            "company_cif": company_cif,
+            "project_acronym": project_acronym,
+            "project_description": project_description,
+            "department": department,
+            "date": date,
+            "budget": budget
+        }
+
+        data_list.append(project_data)
+
+        with open(file_path, "w", encoding="utf-8") as file:
+            json.dump(data_list, file, indent=2)
+
         return obj.project_id
 
     @staticmethod
