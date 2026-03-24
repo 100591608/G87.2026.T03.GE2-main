@@ -12,8 +12,6 @@ class EnterpriseManager:
     def register_project(self, company_cif: str, project_acronym: str,
                          project_description: str, department: str, date: str, budget: float):
         """Registers a new enterprise project"""
-        obj = EnterpriseProject(company_cif, project_acronym, project_description,
-                                department, date, budget)
 
         # Company CIF
         if not isinstance(company_cif, str):
@@ -65,16 +63,40 @@ class EnterpriseManager:
         if not isinstance(date, str):
             raise EnterpriseManagementException("Invalid Date - Wrong Data Type")
 
-        try:
-            date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
-        except ValueError as e:
-            raise EnterpriseManagementException("Invalid Date") from e
+        if not isinstance(date, str):
+            raise EnterpriseManagementException("Invalid Date - Wrong Data Type")
 
-        if date.year < 2025:
-            raise EnterpriseManagementException("Invalid Date - Year Before 2025")
+        if len(date) != 10 or date[2] != "/" or date[5] != "/":
+            raise EnterpriseManagementException("Invalid Date - Wrong Format")
 
-        if date.year > 2027:
-            raise EnterpriseManagementException("Invalid Date - Year After 2027")
+        day_str = date[0:2]
+        month_str = date[3:5]
+        year_str = date[6:10]
+
+        if not day_str.isdigit() or not month_str.isdigit() or not year_str.isdigit():
+            raise EnterpriseManagementException("Invalid Date - Wrong Format")
+
+        day = int(day_str)
+        month = int(month_str)
+        year = int(year_str)
+
+        if day < 1:
+            raise EnterpriseManagementException("Invalid Date - Invalid Day")
+
+        if day > 31:
+            raise EnterpriseManagementException("Invalid Date - Invalid Day")
+
+        if month < 1:
+            raise EnterpriseManagementException("Invalid Date - Invalid Month")
+
+        if month > 12:
+            raise EnterpriseManagementException("Invalid Date - Invalid Month")
+
+        if year < 2025:
+            raise EnterpriseManagementException("Invalid Date - Invalid Year")
+
+        if year > 2027:
+            raise EnterpriseManagementException("Invalid Date - Invalid Year")
 
         # Budget
         if not isinstance(budget, float):
@@ -95,19 +117,8 @@ class EnterpriseManager:
             if decimals < 2 and not budget_str.endswith('.0'):
                 raise EnterpriseManagementException("Invalid Budget - Too Little Decimals")
 
+        obj = EnterpriseProject(company_cif, project_acronym, project_description, department, date, budget)
         return obj.project_id
-
-        # Class example
-        # try:
-            # obj=EnterpriseProject(company_cif, project_acronym,
-                                  # project_description, department, date, budget)
-        #     data_list=obj.to_json()
-        #     #save data into a file
-        #     with open("my_file.json", "w", encoding="utf-8") as file:
-        #         json.dump(data_list, file, indent=2)
-        # exception (e):
-        #     raise managementException("Wrong CIF Value")
-        # return obj.project_id
 
     @staticmethod
     def validate_cif(cif):
