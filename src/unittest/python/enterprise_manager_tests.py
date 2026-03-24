@@ -1,4 +1,5 @@
 """Testing file for EnterpriseManager"""
+import os
 import unittest
 from uc3m_consulting import EnterpriseManager
 from uc3m_consulting import EnterpriseManagementException
@@ -10,10 +11,14 @@ class TestEnterpriseManager(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         print("Execute setUpClass Classmethod")
+        if os.path.exists("corporate_operations.json"):
+            os.remove("corporate_operations.json")
 
     @classmethod
     def tearDownClass(cls):
         print("Execute tearDownClass Classmethod")
+        if os.path.exists("corporate_operations.json"):
+            os.remove("corporate_operations.json")
 
     def setUp(self):
         print("Execute setUp")
@@ -276,7 +281,7 @@ class TestEnterpriseManager(unittest.TestCase):
         project_acronym = "PROJ1"
         project_description = "strawberry"
         department = "HR"
-        date = 1/1/2025 # Should maybe just change to int
+        date = 1
         budget = 50000.00
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,

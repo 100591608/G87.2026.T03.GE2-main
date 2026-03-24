@@ -1,4 +1,5 @@
 """Module """
+import json
 import datetime
 from uc3m_consulting.enterprise_project import EnterpriseProject
 from uc3m_consulting.enterprise_management_exception import EnterpriseManagementException
@@ -14,6 +15,7 @@ class EnterpriseManager:
         obj = EnterpriseProject(company_cif, project_acronym, project_description,
                                 department, date, budget)
 
+        # Company CIF
         if not isinstance(company_cif, str):
             raise EnterpriseManagementException("Invalid Company CIF - Wrong Data Type")
 
@@ -29,6 +31,7 @@ class EnterpriseManager:
         if not EnterpriseManager.validate_cif(company_cif):
             raise EnterpriseManagementException("Invalid Company CIF")
 
+        # Project Acronym
         if not isinstance(project_acronym, str):
             raise EnterpriseManagementException("Invalid Project Acronym - Wrong Data Type")
 
@@ -38,9 +41,10 @@ class EnterpriseManager:
         if len(project_acronym) > 10:
             raise EnterpriseManagementException("Invalid Project Acronym - Too Long")
 
-        if not project_acronym.isalnum() or not project_acronym.isupper():
+        if not all(char.isdigit() or ('A' <= char <= 'Z') for char in project_acronym):
             raise EnterpriseManagementException("Invalid Project Acronym - Not Valid String")
 
+        # Project Description
         if not isinstance(project_description, str):
             raise EnterpriseManagementException("Invalid Project Description - Wrong Data Type")
 
@@ -50,12 +54,14 @@ class EnterpriseManager:
         if len(project_description) > 30:
             raise EnterpriseManagementException("Invalid Project Description - Too Long")
 
+        # Department
         if not isinstance(department, str):
             raise EnterpriseManagementException("Invalid Department - Wrong Data Type")
 
         if department not in {"HR", "LEGAL", "LOGISTICS", "FINANCE"} :
             raise EnterpriseManagementException("Invalid Department - Invalid Value")
 
+        # Date
         if not isinstance(date, str):
             raise EnterpriseManagementException("Invalid Date - Wrong Data Type")
 
@@ -70,8 +76,7 @@ class EnterpriseManager:
         if date.year > 2027:
             raise EnterpriseManagementException("Invalid Date - Year After 2027")
 
-        # Ask about TC27
-
+        # Budget
         if not isinstance(budget, float):
             raise EnterpriseManagementException("Invalid Budget - Wrong Data Type")
 
