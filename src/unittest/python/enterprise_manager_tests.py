@@ -1,5 +1,6 @@
 """Testing file for EnterpriseManager"""
 import os
+import json
 import unittest
 from freezegun import freeze_time
 from uc3m_consulting import EnterpriseManager
@@ -41,6 +42,18 @@ class TestEnterpriseManager(unittest.TestCase):
                                                      project_description, department, date, budget)
         self.assertEqual("e59f691d9ac4975dde6e5acfca0f98e8", output)
 
+        with open("corporate_operations.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]["company_cif"], company_cif)
+        self.assertEqual(data[0]["project_description"], project_description)
+        self.assertEqual(data[0]["project_acronym"], project_acronym)
+        self.assertEqual(data[0]["department"], department)
+        self.assertEqual(data[0]["starting_date"], date)
+        self.assertEqual(data[0]["project_budget"], budget)
+        self.assertEqual(data[0]["project_id"], output)
+
     @freeze_time("02/02/2026")
     def test_TC2(self):
         """Valid Test Case 2"""
@@ -54,6 +67,18 @@ class TestEnterpriseManager(unittest.TestCase):
         output = enterprise_manager.register_project(company_cif, project_acronym,
                                                      project_description, department, date, budget)
         self.assertEqual("06bfa76853c4414f4607e8ed6107db6e", output)
+
+        with open("corporate_operations.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        self.assertEqual(len(data), 2)
+        self.assertEqual(data[1]["company_cif"], company_cif)
+        self.assertEqual(data[1]["project_description"], project_description)
+        self.assertEqual(data[1]["project_acronym"], project_acronym)
+        self.assertEqual(data[1]["department"], department)
+        self.assertEqual(data[1]["starting_date"], date)
+        self.assertEqual(data[1]["project_budget"], budget)
+        self.assertEqual(data[1]["project_id"], output)
 
     @freeze_time("30/11/2027")
     def test_TC3(self):
@@ -69,6 +94,18 @@ class TestEnterpriseManager(unittest.TestCase):
                                                      project_description, department, date, budget)
         self.assertEqual("6241127df42cb7486858e3c8b46b58c2", output)
 
+        with open("corporate_operations.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        self.assertEqual(len(data), 3)
+        self.assertEqual(data[2]["company_cif"], company_cif)
+        self.assertEqual(data[2]["project_description"], project_description)
+        self.assertEqual(data[2]["project_acronym"], project_acronym)
+        self.assertEqual(data[2]["department"], department)
+        self.assertEqual(data[2]["starting_date"], date)
+        self.assertEqual(data[2]["project_budget"], budget)
+        self.assertEqual(data[2]["project_id"], output)
+
     @freeze_time("31/12/2025")
     def test_TC4(self):
         """Valid Test Case 4"""
@@ -82,6 +119,18 @@ class TestEnterpriseManager(unittest.TestCase):
         output = enterprise_manager.register_project(company_cif, project_acronym,
                                                      project_description, department, date, budget)
         self.assertEqual("b21123066aa51951c4887d33c68faf0d", output)
+
+        with open("corporate_operations.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        self.assertEqual(len(data), 4)
+        self.assertEqual(data[3]["company_cif"], company_cif)
+        self.assertEqual(data[3]["project_description"], project_description)
+        self.assertEqual(data[3]["project_acronym"], project_acronym)
+        self.assertEqual(data[3]["department"], department)
+        self.assertEqual(data[3]["starting_date"], date)
+        self.assertEqual(data[3]["project_budget"], budget)
+        self.assertEqual(data[3]["project_id"], output)
 
     def test_TC5(self):
         """Invalid Test Case 5 - Company CIF"""
