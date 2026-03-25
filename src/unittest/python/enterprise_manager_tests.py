@@ -300,7 +300,7 @@ class TestEnterpriseManager(unittest.TestCase):
         project_acronym = "PROJ1"
         project_description = "strawberry"
         department = "HR"
-        date = "01-31-2025"
+        date = "01-01-2025"
         budget = 50000.00
         with self.assertRaises(EnterpriseManagementException) as cm:
             enterprise_manager.register_project(company_cif, project_acronym,

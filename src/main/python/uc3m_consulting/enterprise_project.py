@@ -6,7 +6,7 @@ from freezegun import freeze_time
 
 class EnterpriseProject:
     """Class representing a transfer request"""
-    @freeze_time("20/02/2026") # Applies this date every time ONLY to this function, ignores info in datetime function
+    @freeze_time("20/02/2026")
     def __init__(self,
                  company_cif: str,
                  project_acronym: str,

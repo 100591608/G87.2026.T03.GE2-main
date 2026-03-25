@@ -7,8 +7,9 @@ from uc3m_consulting.enterprise_management_exception import EnterpriseManagement
 
 class EnterpriseManager:
     """Class for providing the methods for managing the orders"""
-    # def __init__(self):
-    #     pass
+    def __init__(self):
+        """Init the class"""
+        pass
 
     def register_project(self, company_cif: str, project_acronym: str,
                          project_description: str, department: str, date: str, budget: float):
@@ -140,18 +141,7 @@ class EnterpriseManager:
                 raise EnterpriseManagementException("Project with same name for the same CIF already existed in the data file")
 
         obj = EnterpriseProject(company_cif, project_acronym, project_description, department, date, budget)
-
-        project_data = {
-            "project_id": obj.project_id,
-            "company_cif": company_cif,
-            "project_acronym": project_acronym,
-            "project_description": project_description,
-            "department": department,
-            "date": date,
-            "budget": budget
-        }
-
-        data_list.append(project_data)
+        data_list.append(obj.to_json())
 
         with open(file_path, "w", encoding="utf-8") as file:
             json.dump(data_list, file, indent=2)
